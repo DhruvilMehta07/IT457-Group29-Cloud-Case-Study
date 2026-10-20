@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.db
+.env
+*.pem
+*.key
+.venv/
+venv/
+.DS_Store
+docs/measurements/*.tmp
