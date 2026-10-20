@@ -1,0 +1,17 @@
+# Stage C: same app, but the database is Amazon RDS, so there is no db container.
+# Put the real RDS address in a file called .env (never commit that file):
+#   DATABASE_URL=postgresql://USER:PASSWORD@YOUR-RDS-ENDPOINT:5432/telemetry
+#   STAGE=C-rds
+# Run from the repo root:  docker compose -f docker/docker-compose.rds.yml --env-file .env up --build -d
+
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      STAGE: ${STAGE:-C-rds}
+    ports:
+      - "8080:5000"
+    restart: unless-stopped
