@@ -11,7 +11,7 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 | Created the GitHub repo, project structure and README | Done | `README.md` |
 | Wrote the project plan and weekly schedule | Done | `docs/plan.md` |
 | Ran Stage A on a laptop with Docker. App and Postgres work, the simulator sends data, and the dashboard shows the readings (480 readings in the test run) | Done | `docs/screenshots/` |
-| Baseline load test on Stage A with Locust | In progress | `docs/measurements/` |
+| Baseline load test on Stage A with Locust. 50 users for 2 minutes, 5714 requests with no failures, average response time 8.7 ms | Done | `docs/measurements/` |
 
 ### Jay (AWS)
 

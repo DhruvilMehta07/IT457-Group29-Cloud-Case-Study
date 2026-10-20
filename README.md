@@ -106,7 +106,7 @@ locust -f loadtest/locustfile.py --host http://localhost:8080 --headless -u 50 -
 |------|-------|
 | Week 1 source summary | In progress |
 | Stage A (local Docker with Postgres) | Done and checked on a laptop, screenshots in `docs/screenshots/` |
-| Baseline load test (Stage A) | In progress |
+| Baseline load test (Stage A) | Done, results in `docs/measurements/` |
 | AWS account and billing alarm | In progress |
 | Stage B (EC2) | Not started |
 | Stage C (RDS) | Not started |
