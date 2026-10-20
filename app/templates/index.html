@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vehicle Telemetry Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #f4f5f7; color: #1d2330; }
+  header { background: #1d2330; color: #fff; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  header h1 { font-size: 18px; margin: 0; }
+  .badge { background: #3b82f6; padding: 3px 10px; border-radius: 12px; font-size: 13px; }
+  main { padding: 20px; max-width: 1000px; margin: 0 auto; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat { background: #fff; padding: 12px 18px; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .stat b { display: block; font-size: 22px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  th, td { padding: 8px 10px; text-align: left; font-size: 14px; border-bottom: 1px solid #eceef2; }
+  th { background: #eceef2; }
+  tr.row { cursor: pointer; }
+  tr.row:hover { background: #f0f6ff; }
+  .chart-box { background: #fff; margin-top: 16px; padding: 14px; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+  .hint { color: #5b6475; font-size: 13px; margin: 6px 0 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Vehicle Telemetry Dashboard (IT457 Group 29)</h1>
+  <span class="badge">Stage: {{ stage }}</span>
+</header>
+<main>
+  <div class="stats">
+    <div class="stat"><span>Vehicles</span><b id="s-vehicles">-</b></div>
+    <div class="stat"><span>Total readings</span><b id="s-total">-</b></div>
+  </div>
+  <p class="hint">Click a vehicle to see its last 60 readings. The page refreshes every 2 seconds.</p>
+  <table>
+    <thead><tr><th>Vehicle</th><th>Speed (km/h)</th><th>Fuel/Battery (%)</th><th>Engine temp (C)</th><th>Lat</th><th>Lon</th><th>Time</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+  <div class="chart-box">
+    <strong id="chart-title">Select a vehicle</strong>
+    <canvas id="chart" height="110"></canvas>
+  </div>
+</main>
+<script>
+let selected = null;
+let chart = null;
+
+async function refresh() {
+  try {
+    const [latest, stats] = await Promise.all([
+      fetch('/api/latest').then(r => r.json()),
+      fetch('/api/stats').then(r => r.json())
+    ]);
+    document.getElementById('s-vehicles').textContent = stats.vehicles;
+    document.getElementById('s-total').textContent = stats.total_readings;
+    const tbody = document.getElementById('rows');
+    tbody.innerHTML = '';
+    latest.forEach(v => {
+      const tr = document.createElement('tr');
+      tr.className = 'row';
+      tr.innerHTML = `<td>${v.vehicle_id}</td><td>${(v.speed_kmph ?? 0).toFixed(1)}</td>
+        <td>${(v.fuel_or_battery_pct ?? 0).toFixed(1)}</td><td>${(v.engine_temp_c ?? 0).toFixed(1)}</td>
+        <td>${(v.lat ?? 0).toFixed(4)}</td><td>${(v.lon ?? 0).toFixed(4)}</td><td>${String(v.recorded_at).slice(11, 19)}</td>`;
+      tr.onclick = () => { selected = v.vehicle_id; drawChart(); };
+      tbody.appendChild(tr);
+    });
+    if (selected) drawChart();
+  } catch (e) { console.error(e); }
+}
+
+async function drawChart() {
+  const data = await fetch('/api/history/' + selected).then(r => r.json());
+  document.getElementById('chart-title').textContent = 'History for ' + selected;
+  const labels = data.map(d => String(d.recorded_at).slice(11, 19));
+  const ds = [
+    { label: 'Speed (km/h)', data: data.map(d => d.speed_kmph), borderColor: '#3b82f6', tension: .3 },
+    { label: 'Fuel/Battery (%)', data: data.map(d => d.fuel_or_battery_pct), borderColor: '#10b981', tension: .3 },
+    { label: 'Engine temp (C)', data: data.map(d => d.engine_temp_c), borderColor: '#ef4444', tension: .3 }
+  ];
+  if (chart) { chart.data.labels = labels; chart.data.datasets = ds; chart.update('none'); return; }
+  chart = new Chart(document.getElementById('chart'), { type: 'line', data: { labels, datasets: ds }, options: { animation: false, pointRadius: 0 } });
+}
+
+refresh();
+setInterval(refresh, 2000);
+</script>
+</body>
+</html>
