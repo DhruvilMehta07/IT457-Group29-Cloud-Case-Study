@@ -2,7 +2,7 @@
 
 IT457 Group 29. Each member keeps their own rows up to date and pushes the change. Status is one of: **Done**, **In progress**, **To do**. A row only becomes Done when the work really is finished. Exact dates are in the git history.
 
-## Week 1 (14 to 21 Oct 2026)
+## Week 1
 
 ### Dhruvil
 
@@ -17,18 +17,20 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 
 | Work | Status | Files |
 |------|--------|-------|
-| Setting up the AWS account (MFA, IAM user, region) | In progress | `docs/notes/aws-notes.md` |
-| Setting a monthly budget and billing alarm | In progress | `docs/notes/aws-notes.md` |
-| Learning the AWS services that appear in our two cases (EC2, EKS, CloudWatch, RDS, IoT Core) and writing what each one does | In progress | `docs/notes/aws-notes.md` |
+| Set up the AWS account: MFA on the root user and region chosen (Mumbai). No IAM user, we share the root login | Done | `docs/notes/aws-notes.md` |
+| Set a monthly budget. The alert email still has to be verified | In progress | `docs/notes/aws-notes.md` |
+| Learned the AWS services that appear in our two cases (EC2, EKS, CloudWatch, RDS, IoT Core) and wrote what each one does | Done | `docs/notes/aws-notes.md` |
 | Rough cost estimate for the three stages with the AWS Pricing Calculator | To do | `docs/notes/aws-notes.md` |
-| Preparing the steps for Stage B (EC2) and Stage C (RDS) | In progress | `infra/aws-setup-notes.md` |
+| Prepared the steps for Stage B (EC2) and Stage C (RDS) | Done | `infra/aws-setup-notes.md` |
+| Launched the Stage B EC2 machine with a fixed Elastic IP, opened ports 80 and 22, and logged in over SSH | Done | `docs/stageB/ec2-launch-log.md`, `docs/screenshots/` |
+| Deploy the app on the EC2 machine | In progress | |
 
 ### Jeet (research)
 
 | Work | Status | Files |
 |------|--------|-------|
-| Collecting and reading sources for Titan and Tata Motors | In progress | `docs/notes/research-notes.md` |
-| Pulling out architecture, cost and outcome facts from the sources | In progress | `docs/notes/research-notes.md` |
+| Collected and read sources for Titan and Tata Motors | Done | `docs/notes/research-notes.md` |
+| Pulled out architecture, cost and outcome facts from the sources | Done | `docs/notes/research-notes.md` |
 | Checking the Week 1 summary against the sources and rewriting it in our own words | In progress | `docs/week1-summary.md` |
 | Looking for the original AWS case study for Tata Motors | In progress | `docs/notes/research-notes.md` |
 | Report outline | Draft ready, being reviewed | `docs/report-outline.md` |
