@@ -15,7 +15,7 @@ Tasks are shared and can change as the project goes on. What each of us is worki
 
 ## Live URL
 
-To be added after deployment: `http://<our-ec2-address>/`
+`http://3.111.13.17/` (Stage B, plain HTTP). This points to the EC2 machine and changes with the stage we are running.
 
 ## What this project is
 
@@ -108,7 +108,7 @@ locust -f loadtest/locustfile.py --host http://localhost:8080 --headless -u 50 -
 | Stage A (local Docker with Postgres) | Done and checked on a laptop, screenshots in `docs/screenshots/` |
 | Baseline load test (Stage A) | Done, results in `docs/measurements/` |
 | AWS account and billing alarm | Done (alert email still to be verified) |
-| Stage B (EC2) | In progress (machine launched, app not deployed yet) |
+| Stage B (EC2) | App deployed and live, load test and CloudWatch results still to come |
 | Stage C (RDS) | Not started |
 | Report | Not started, outline ready |
 
