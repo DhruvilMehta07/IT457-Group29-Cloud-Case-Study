@@ -23,7 +23,7 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 | Rough cost estimate for the three stages with the AWS Pricing Calculator | To do | `docs/notes/aws-notes.md` |
 | Prepared the steps for Stage B (EC2) and Stage C (RDS) | Done | `infra/aws-setup-notes.md` |
 | Launched the Stage B EC2 machine with a fixed Elastic IP, opened ports 80 and 22, and logged in over SSH | Done | `docs/stageB/ec2-launch-log.md`, `docs/screenshots/` |
-| Deploy the app on the EC2 machine | In progress | |
+| Deployed the app and database on the EC2 machine with Docker and Nginx, live at the Elastic IP | Done | `docs/stageB/deploy-log.md`, `infra/deploy-ec2.sh`, `infra/nginx-telemetry.conf` |
 
 ### Jeet (research)
 
