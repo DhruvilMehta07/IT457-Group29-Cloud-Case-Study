@@ -62,3 +62,38 @@ Our app connects to the database directly, we only use the basic monitoring grap
 - Backups beyond the free amount. Our automatic backup retention is one day and the database is small.
 - Data transfer in. Data sent into AWS is free.
 - The time we spent. We do not count labour.
+
+## The real bill after Stage C setup
+
+The estimates above are for a full month. To check them, we opened the AWS Bills page after Stage B had been running for 64 hours and the RDS database for about 21.5 hours. Screenshots: `docs/screenshots/cost-actual-so-far-1.png` and `cost-actual-so-far-2.png`.
+
+| Item on the bill | Usage | Charge (USD) |
+|------------------|-------|--------------|
+| EC2 `t3.micro` instance hours | 64 hours at 0.0112 per hour | 0.72 |
+| EBS gp3 disk storage | 20.528 GB-months at 0.0912 | 1.87 |
+| RDS `db.t4g.micro` Single-AZ, PostgreSQL | 21.524 hours at 0.021 per hour | 0.45 |
+| RDS gp3 storage | 0.626 GB-months at 0.131 | 0.08 |
+| Public IPv4 address in use | 65.284 hours at 0.005 per hour | 0.33 |
+| CloudWatch (first 10 metrics are free) | 0.233 metrics | 0.00 |
+| Data transfer, S3, Glue, Key Management Service | | 0.00 |
+| **Total before credits** | | **3.45** |
+| Tax | | 0.00 |
+
+Every service total on the page reads 0.00 because AWS applies a matching credit line to each one. So we paid nothing in cash. The credits page (`docs/screenshots/cost-credits-so-far.png`) shows 160 USD of credits issued: 100 USD from the AWS Free Tier plus three tasks of 20 USD each (launch an instance with EC2, set up a cost budget, create an RDS database). The estimated amount used so far is 9.79 USD and the estimated amount remaining is 150.21 USD. AWS updates these numbers about every 24 hours.
+
+### Do the estimates match the real prices?
+
+Yes. The unit prices on the bill give the same monthly numbers as the Pricing Calculator:
+
+| Item | Price on the bill | Over a 730 hour month | Calculator |
+|------|-------------------|-----------------------|------------|
+| Public IPv4 address | 0.005 per hour | 3.65 | 3.65 |
+| RDS `db.t4g.micro` instance | 0.021 per hour | 15.33 | |
+| RDS gp3 storage, 20 GB | 0.131 per GB-month | 2.62 | |
+| RDS total | | 17.95 | 17.95 |
+
+So the estimates were right. The real bill is much lower only because each stage ran for hours, not for a whole month.
+
+### Budget
+
+We set a monthly cost budget of 110 USD with three email alerts (`docs/screenshots/budget-alert-checked.png`). At the time of the screenshot the spend was 3.45 USD, which is 3.14 percent of the budget, and AWS forecast 8.70 USD for the month. The alert email address shows as verified and the alert status is OK, so none of the thresholds has been reached.
