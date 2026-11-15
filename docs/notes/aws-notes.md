@@ -14,9 +14,9 @@ Rules: no keys, passwords or `.pem` files in this repo. If we take screenshots, 
 - [x] Monthly budget and billing alarm set up with email alerts (the alert email still has to be verified)
 - [x] Region chosen
 - [x] Read about the services in our cases (section 3)
-- [ ] Rough cost estimate done with the AWS Pricing Calculator (section 4)
+- [x] Rough cost estimate done with the AWS Pricing Calculator (section 4)
 - [x] Stage B steps read and understood
-- [ ] Stage C steps read and understood
+- [x] Stage C steps read and understood
 
 ## 2. Account setup log
 
@@ -47,21 +47,24 @@ Services named in the Titan AWS case study, plus the ones we plan to use in our 
 
 For Tata Motors we have not confirmed which AWS services they use. We should not claim any until we find a proper source.
 
-## 4. Cost estimate (still to do with the AWS Pricing Calculator)
+## 4. Cost estimate (AWS Pricing Calculator)
 
-Use https://calculator.aws/ and note when you checked, because prices and free tier rules change.
+Made with https://calculator.aws/ for the Asia Pacific (Mumbai) region, On-Demand prices, Linux. Prices and free tier rules change, so these numbers are an estimate. The full breakdown and the exported estimates are in `docs/costs.md` and `docs/cost-estimates/`.
 
-| Item | Size or setting | Estimated monthly cost | When checked |
-|------|-----------------|------------------------|--------------|
-| EC2 instance for the app | | | |
-| Elastic IP | | | |
-| RDS PostgreSQL instance | | | |
-| RDS storage | | | |
-| Data transfer | | | |
-| Total for Stage B | | | |
-| Total for Stage C | | | |
+| Item | Size or setting | Estimated monthly cost (USD) |
+|------|-----------------|------------------------------|
+| EC2 instance for the app | `t3.micro`, 100 percent of the month | included in the EC2 line below |
+| EC2 line in total | Also includes a 20 GB gp3 disk, detailed monitoring and 1 GB per month out | 12.21 |
+| Elastic IP (public IPv4 address) | One address in use | 3.65 |
+| RDS PostgreSQL instance and storage | `db.t4g.micro`, Single AZ, 20 GB gp3 | 17.95 |
+| Data transfer | 1 GB per month out, inside the EC2 line | included |
+| Total for Stage B | | 15.86 |
+| Total for Stage C | Stage B plus RDS | 33.81 |
 
-Notes on the free tier and credits (check the current AWS terms and write what applies to us):
+Notes on the free tier and credits:
+
+- Our account is on the AWS free plan with credits. The estimate does not subtract the credits, so it shows what the setup would cost over a full month.
+- The Pricing Calculator showed 61.02 USD for the RDS line at first because RDS Proxy, Database Insights and Extended Support were switched on by default. We turned them off because we do not use them.
 
 ## 5. Decisions
 
@@ -69,7 +72,7 @@ Notes on the free tier and credits (check the current AWS terms and write what a
 |----------|--------------|-----|
 | Region | Asia Pacific (Mumbai), `ap-south-1` | Closest AWS region to India |
 | EC2 instance type | `t3.micro` | Small and cheap. We move to `t3.small` if it is too slow |
-| RDS instance size | Not decided yet | To be chosen in Stage C |
+| RDS instance size | `db.t4g.micro`, single AZ, 20 GiB gp3, private access only | Smallest class on offer, no standby needed for a test, same size disk as the EC2 machine. Details in `docs/stageC/rds-log.md` |
 
 ## 6. Problems and fixes
 
@@ -77,6 +80,8 @@ Notes on the free tier and credits (check the current AWS terms and write what a
 |---------|-----|
 | Using the word `ELASTIC_IP` from the guide in the SSH command | SSH said it could not resolve the hostname. We used the real address instead |
 | The instance first showed an automatic public address | Attached an Elastic IP. We use only the Elastic IP from now on |
+| The RDS console first offered Aurora PostgreSQL Express, which is IAM only and has no VPC | We chose standard PostgreSQL with the Free tier template |
+| The first RDS cost in the calculator looked far too high | Three default add ons were on. We switched off RDS Proxy, Database Insights and Extended Support |
 
 ## 7. Ready for Stage B?
 
