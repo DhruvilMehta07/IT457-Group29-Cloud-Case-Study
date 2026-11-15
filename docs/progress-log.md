@@ -18,9 +18,9 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 | Work | Status | Files |
 |------|--------|-------|
 | Set up the AWS account: MFA on the root user and region chosen (Mumbai). No IAM user, we share the root login | Done | `docs/notes/aws-notes.md` |
-| Set a monthly budget. The alert email still has to be verified | In progress | `docs/notes/aws-notes.md` |
+| Set a monthly budget. The alert email shows as verified | Done | `docs/notes/aws-notes.md`, `docs/screenshots/budget-alert-checked.png` |
 | Learned the AWS services that appear in our two cases (EC2, EKS, CloudWatch, RDS, IoT Core) and wrote what each one does | Done | `docs/notes/aws-notes.md` |
-| Rough cost estimate for the three stages with the AWS Pricing Calculator | To do | `docs/notes/aws-notes.md` |
+| Rough cost estimate for the three stages with the AWS Pricing Calculator | Done | `docs/costs.md`, `docs/cost-estimates/` |
 | Prepared the steps for Stage B (EC2) and Stage C (RDS) | Done | `infra/aws-setup-notes.md` |
 | Launched the Stage B EC2 machine with a fixed Elastic IP, opened ports 80 and 22, and logged in over SSH | Done | `docs/stageB/ec2-launch-log.md`, `docs/screenshots/` |
 | Deployed the app and database on the EC2 machine with Docker and Nginx, live at the Elastic IP | Done | `docs/stageB/deploy-log.md`, `infra/deploy-ec2.sh`, `infra/nginx-telemetry.conf` |
@@ -39,7 +39,14 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 
 | Who | Work | Status | Files |
 |-----|------|--------|-------|
-| | | | |
+| Dhruvil | Repeated the Stage A load test, three runs in total | Done | `docs/measurements/` |
+| Jay | Created the RDS database and checked that only the EC2 machine can reach it | Done | `docs/stageC/rds-log.md` |
+| Jay | Pricing Calculator estimates for Stage B and Stage C, cost comparison, real bill, credits and budget email | Done | `docs/costs.md`, `docs/cost-estimates/` |
+| Jeet | Stage B load tests (three runs and one 10 minute run), CloudWatch graphs and a CPU alarm | Done | `docs/measurements/`, `docs/screenshots/` |
+| Dhruvil | Moved the data to RDS and switched the app over (930 readings checked before and after). Measured restart time three times in Stage B and in Stage C | Done | `docs/stageC/migration-log.md`, `docs/screenshots/` |
+| Jeet | Stage C load tests (three runs and one 10 minute run), EC2 and RDS graphs, comparison graphs | Done | `docs/measurements/`, `docs/screenshots/` |
+| Dhruvil | Filled in the comparison table and wrote what the numbers show | Done | `docs/measurements/README.md` |
+| All | Final report | To do | |
 
 ## Week 3 
 
