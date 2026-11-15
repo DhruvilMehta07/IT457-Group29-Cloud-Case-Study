@@ -15,7 +15,7 @@ Tasks are shared and can change as the project goes on. What each of us is worki
 
 ## Live URL
 
-`http://3.111.13.17/` (Stage B, plain HTTP). This points to the EC2 machine and changes with the stage we are running.
+`http://3.111.13.17/` (plain HTTP). This points to the EC2 machine. The app there now uses Amazon RDS as its database (Stage C).
 
 ## What this project is
 
@@ -107,9 +107,9 @@ locust -f loadtest/locustfile.py --host http://localhost:8080 --headless -u 50 -
 | Week 1 source summary | In progress |
 | Stage A (local Docker with Postgres) | Done and checked on a laptop, screenshots in `docs/screenshots/` |
 | Baseline load test (Stage A) | Done, results in `docs/measurements/` |
-| AWS account and billing alarm | Done (alert email still to be verified) |
-| Stage B (EC2) | App deployed and live, load test and CloudWatch results still to come |
-| Stage C (RDS) | Not started |
+| AWS account and billing alarm | Done (alert email verified) |
+| Stage B (EC2) | Done: deployed, load tested, CloudWatch graphs and CPU alarm in `docs/screenshots/` |
+| Stage C (RDS) | Done: database created, data moved, load tested, results in `docs/measurements/` |
 | Report | Not started, outline ready |
 
 See `docs/progress-log.md` for the weekly log.
