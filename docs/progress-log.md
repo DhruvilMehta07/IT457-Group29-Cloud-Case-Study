@@ -31,9 +31,9 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 |------|--------|-------|
 | Collected and read sources for Titan and Tata Motors | Done | `docs/notes/research-notes.md` |
 | Pulled out architecture, cost and outcome facts from the sources | Done | `docs/notes/research-notes.md` |
-| Checking the Week 1 summary against the sources and rewriting it in our own words | In progress | `docs/week1-summary.md` |
-| Looking for the original AWS case study for Tata Motors | In progress | `docs/notes/research-notes.md` |
-| Report outline | Draft ready, being reviewed | `docs/report-outline.md` |
+| Checking the Week 1 summary against the sources and rewriting it in our own words | Done | `docs/week1-summary.md` |
+| Looking for the original AWS case study for Tata Motors | Done, the page linked from the AWS blog no longer opens | `docs/notes/research-notes.md` |
+| Report outline | Done, used for the final report | `docs/report-outline.md` |
 
 ## Week 2 
 
@@ -46,7 +46,7 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 | Dhruvil | Moved the data to RDS and switched the app over (930 readings checked before and after). Measured restart time three times in Stage B and in Stage C | Done | `docs/stageC/migration-log.md`, `docs/screenshots/` |
 | Jeet | Stage C load tests (three runs and one 10 minute run), EC2 and RDS graphs, comparison graphs | Done | `docs/measurements/`, `docs/screenshots/` |
 | Dhruvil | Filled in the comparison table and wrote what the numbers show | Done | `docs/measurements/README.md` |
-| All | Final report | To do | |
+| All | Final report | Done | `docs/report/` |
 
 ## Week 3 
 
@@ -63,5 +63,5 @@ IT457 Group 29. Each member keeps their own rows up to date and pushes the chang
 ## Decisions and open questions
 
 - The project document says "Titan digital business and properties on AWS with IoT". The AWS case we found for Titan is about retail system readiness at festival peak. Question for the TA: is that acceptable, and is the IoT part expected mainly from the Tata Motors side?
-- The original AWS page for Tata Motors is still not found. To search in Week 2 if not found this week.
+- The original AWS page for Tata Motors was checked at the end. The page linked from the AWS blog no longer opens, so the report uses the blog text only and says so.
 - Who does what is not fixed. We update the rows above each week when the split changes.
