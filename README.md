@@ -104,13 +104,13 @@ locust -f loadtest/locustfile.py --host http://localhost:8080 --headless -u 50 -
 
 | Item | State |
 |------|-------|
-| Week 1 source summary | In progress |
+| Week 1 source summary | Done, in `docs/week1-summary.md` and `docs/notes/` |
 | Stage A (local Docker with Postgres) | Done and checked on a laptop, screenshots in `docs/screenshots/` |
 | Baseline load test (Stage A) | Done, results in `docs/measurements/` |
 | AWS account and billing alarm | Done (alert email verified) |
 | Stage B (EC2) | Done: deployed, load tested, CloudWatch graphs and CPU alarm in `docs/screenshots/` |
 | Stage C (RDS) | Done: database created, data moved, load tested, results in `docs/measurements/` |
-| Report | Not started, outline ready |
+| Report | Done, PDF and Word file in `docs/report/` |
 
 See `docs/progress-log.md` for the weekly log.
 
